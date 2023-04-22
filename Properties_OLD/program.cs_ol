@@ -1,0 +1,338 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Net.Http; // added by me
+using Microsoft.Net.Http.Headers; // added by me
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Headers;
+using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+
+
+
+//var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+
+
+WebHost.CreateDefaultBuilder().
+ConfigureServices(s =>
+{
+
+
+    IConfiguration appsettings = new ConfigurationBuilder()
+                            .AddJsonFile("appsettings.json")
+                            .Build();
+
+    s.AddSingleton<LoginService>();// this service will validate users and generate java web tokens
+    //s.AddSingleton<ContactService>(); 
+    // s.AddCors(options =>
+    // {
+    //     options.AddPolicy(name: MyAllowSpecificOrigins,
+    //                     builder =>
+    //                     {
+    //                         builder.WithOrigins("http://localhost:8000",
+    //                                             "http://www.contoso.com");
+    //                     });
+    // });
+    
+    
+    s.AddAuthorization();
+    s.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+    {
+        opt.TokenValidationParameters = new ()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = appsettings["Jwt:Issuer"],
+            ValidAudience = appsettings["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appsettings["Jwt:Key"]))
+        };
+    });
+
+
+    s.AddCors();
+    s.AddHttpClient<TestServiceRequest>(); // this is to access access api server to server
+    s.AddControllers();
+
+
+
+}).
+Configure(app =>
+{
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+    app.UseRouting();
+
+
+    app.UseAuthentication();
+    app.UseAuthorization(); // this line has to apperar between app.UseRouting and app.UseEndPoints
+   
+ 
+    //app.UseCors(MyAllowSpecificOrigins);
+
+    app.UseCors(options => 
+        options.WithOrigins("http://localhost:8000", "https://localhost:8000","https://localhost:5001").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+
+
+
+    app.UseEndpoints(e=> 
+    {
+        var testService = e.ServiceProvider.GetRequiredService<TestServiceRequest>();
+        var loginService = e.ServiceProvider.GetRequiredService<LoginService>();
+ 
+         e.MapPost("/login", 
+        [AllowAnonymous] async (HttpContext http) => 
+        {
+            //var t= http.Request.ReadFormAsync().Result;
+            //var v=await http.Request.ReadFromJsonAsync<userRequest>();
+            userRequest ur= await http.Request.ReadFromJsonAsync<userRequest>();
+
+            
+            
+            //Dictionary<string,object> ss= (Dictionary<string,object>)t;
+            //System.Net.Http.HttpResponseMessage x;
+            //await x => testService.GetAllContacts();
+            //c.Response.WriteAsJsonAsync(x);
+            
+            String  a = "Hellotext";
+            //if(ur)
+
+            // GENERATE TOKEN HERE IF USER IS VALID
+            // var claims = new[]
+            // {
+            //     new Claim(ClaimTypes.Name, "userNameRecievedFromRequest"),
+            //     new Claim(ClaimTypes.NameIdentifier,Guid.NewGuid().ToString())
+            // };
+
+
+            // var key=appsettings["Jwt:Issuer"];
+ 
+            // var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            // var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            // var tokenDescriptor = new JwtSecurityToken(issuer, issuer, claims,
+            //     expires: DateTime.Now.Add(ExpiryDuration), signingCredentials: credentials);
+            // var token = JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+
+                
+            // // if the authentication suceeded 
+            // var token = tokenService.BuildToken(builder.Configuration["Jwt:Key"], builder.Configuration["Jwt:Issuer"], userDto);
+            // await http.Response.WriteAsJsonAsync(new { token = token });
+            // return;
+        });
+
+
+        e.MapGet("/bing",
+            //async c => await c.Response.WriteAsJsonAsync(await contactService.GetAll()));
+            //async c => await c.Response.WriteAsync("Hello how are you"));
+            async c => await c.Response.WriteAsJsonAsync("{'Name':'Pravin','Age':'43'}"));
+         //e.MapGet("/contacts/{id:int}",
+        e.MapGet("/contacts",
+            //async c => await c.Response.WriteAsJsonAsync(await testService.GetAllContacts()));
+            async c => await c.Response.WriteAsync(await testService.GetAllContacts())); // 
+            // async c => 
+            // {
+            //     System.Net.Http.HttpResponseMessage x;
+            //     await x => testService.GetAllContacts();
+            //     c.Response.WriteAsJsonAsync(x);
+                
+            // });
+            // e.MapPost("/contacts", // this is being used currently in PHP projects 
+            //     async c =>
+            //     {
+            //         await contactService.Add(await c.Request.ReadFromJsonAsync<Contact>());
+            //         c.Response.StatusCode = 201;
+            //     });
+            // e.MapDelete("/contacts/{id:int}",
+            //     async c =>
+            //     {
+            //         await contactService.Delete(int.Parse((string)c.Request.RouteValues["id"]));
+            //         c.Response.StatusCode = 204;
+            //     });
+        e.MapPost("/bing",
+            //async c => await c.Response.WriteAsJsonAsync(await testService.GetAllContacts()));
+            //async c => await c.Response.WriteAsync("Hello how are you POST"));
+            async c => await c.Response.WriteAsJsonAsync("{'Name':'Pravin POST','Age':'43 POST'}"));
+
+        e.MapDefaultControllerRoute();
+    });
+}).Build().Run();
+ 
+
+ public record userRequest2
+ {
+     // { srvcID: "F000", eventID: 'CAPTCHA', addInfo: "" }
+        [Required]
+        public string serviceID { get; set; } // name of the service which is being called 
+    
+        [Required]
+        public string eventID { get; set; } // event id signifying event to be triggered (add,modify,delete,etc)
+        
+        [Required]
+        public Dictionary<string,object> addInfo { get; set; } // additional information about the request
+
+        [Required]
+        public string sign { get; set; } // common information which is added by the application main function calling thrnservice
+ 
+         [Required]
+        public string tid { get; set; } // common information which is added by the application main function calling thrnservice
+
+        [Required]
+        public string uid { get; set; } // common information which is added by the application main function calling thrnservice
+
+        [Required]
+        public string sid { get; set; } // common information which is added by the application main function calling thrnservice
+
+        [Required]
+        public string guid { get; set; } // common information which is added by the application main function calling thrnservice
+
+        [Required]
+        public string domainName { get; set; } // common information which is added by the application main function calling thrnservice
+
+
+ 
+ }
+
+  public record userRequest1
+ {
+     // { srvcID: "F000", eventID: 'CAPTCHA', addInfo: "" }
+        [Required]
+        public Dictionary<string,object> prm { get; set; } // name of the service which is being called 
+ }
+
+public class LoginService
+{
+    public LoginService(){}
+
+    public UserModel ValidateUser(UserModel um)
+    {
+        if(um.UserName=="Pravin" && um.Password=="Singh")
+            return um;
+        else
+            return null;
+    }
+
+
+    public record UserModel
+    {
+        [Required]
+        public string UserName { get; set; }
+    
+        [Required]
+        public string Password { get; set; }
+    }
+
+
+}
+
+
+
+public class commonService // this will include all common functions to be used 
+{
+    // private TimeSpan ExpiryDuration = new TimeSpan(0, 30, 0);
+    // public string BuildToken(string key, string issuer, UserDto user)
+    // {
+    //     var claims = new[]
+    //     {
+    //             new Claim(ClaimTypes.Name, user.UserName),
+    //             new Claim(ClaimTypes.NameIdentifier,
+    //             Guid.NewGuid().ToString())
+    //          };
+ 
+    //     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+    //     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+    //     var tokenDescriptor = new JwtSecurityToken(issuer, issuer, claims,
+    //         expires: DateTime.Now.Add(ExpiryDuration), signingCredentials: credentials);
+    //     return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+    // }
+}
+
+
+
+
+public class TestServiceRequest
+{
+    private readonly HttpClient _httpClient;
+
+
+    // returns a JSON String 
+    public String executeSQL(String sql, String prm)
+    {
+        return "";
+    }
+
+    public TestServiceRequest(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new Uri("http://localhost:5002/");
+
+        // using Microsoft.Net.Http.Headers;
+        // The GitHub API requires two headers.
+        // _httpClient.DefaultRequestHeaders.Add(
+        // HeaderNames.Accept, "application/vnd.github.v3+json");
+        // _httpClient.DefaultRequestHeaders.Add(
+        // HeaderNames.UserAgent, "HttpRequestsSample");
+    }
+
+    public async Task<String> GetAllContacts() // this function is called when ever a mapped link is typed
+    {
+        // get sql data here
+             MySqlConnection conn = null;
+             String s="";
+             var sb = new MySqlConnectionStringBuilder
+             {
+                 Server = "127.0.0.1",
+                 UserID = "root",
+                 Password = "admin*123",
+                 Port = 3306,
+                 Database = "leads"
+             };
+ 
+             try
+             {
+                 Console.WriteLine(sb.ConnectionString);
+                 conn = new MySqlConnection(sb.ConnectionString);
+                 conn.Open();
+                 MySqlTransaction t = conn.BeginTransaction();
+                 
+                 var cmd = conn.CreateCommand();
+                 cmd.CommandText = "SELECT * FROM test;";
+                 var reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                 //String s ="";
+                 while (reader.Read())
+                 {
+                     s = s+ " " + reader.GetInt32("id") + " " + reader.GetString("Name")+"\n";
+                 }
+             }
+             catch (MySqlException ex)
+             {
+                 Console.Write(ex.Message);
+             }
+             finally
+             {
+                 if (conn != null)
+                     conn.Close();
+             }
+        // sql test ends here
+
+
+
+        String x = "";//await _httpClient.GetStringAsync("contacts");
+        return x + "ADDED STRING FROM DB" + s;
+    }
+        
+}

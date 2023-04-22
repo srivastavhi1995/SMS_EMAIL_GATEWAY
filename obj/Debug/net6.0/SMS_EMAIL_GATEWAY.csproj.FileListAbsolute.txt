@@ -1,0 +1,6 @@
+/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/obj/Debug/net6.0/SMS_EMAIL_GATEWAY.csproj.AssemblyReference.cache
+/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/obj/Debug/net6.0/SMS_EMAIL_GATEWAY.GeneratedMSBuildEditorConfig.editorconfig
+/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/obj/Debug/net6.0/SMS_EMAIL_GATEWAY.AssemblyInfoInputs.cache
+/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/obj/Debug/net6.0/SMS_EMAIL_GATEWAY.AssemblyInfo.cs
+/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/obj/Debug/net6.0/SMS_EMAIL_GATEWAY.csproj.CoreCompileInputs.cache
+/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/obj/Debug/net6.0/SMS_EMAIL_GATEWAY.MvcApplicationPartsAssemblyInfo.cache

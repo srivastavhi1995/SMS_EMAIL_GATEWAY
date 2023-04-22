@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../microApp_mongo/net-core-structure"
+		},
+		{
+			"path": "../wwwroot"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

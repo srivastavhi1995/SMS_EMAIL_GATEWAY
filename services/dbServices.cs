@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 public class dbServices{
-    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("Properties/appsettings.json").Build();
+    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
     //MySqlConnection conn = null; // this will store the connection which will be persistent 
     MySqlConnection connPrimary = null; // this will store the connection which will be persistent 
     MySqlConnection connReadOnly = null;

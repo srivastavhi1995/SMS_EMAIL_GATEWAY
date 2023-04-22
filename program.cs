@@ -56,7 +56,7 @@ using MongoDB.Bson.Serialization.Attributes;
 // channel.BasicConsume(queue: "reg_sms1", autoAck: true, consumer: consumer);
 // //Console.ReadKey();
 IConfiguration appsettings = new ConfigurationBuilder()
-                        .AddJsonFile("Properties/appsettings.json")
+                        .AddJsonFile("appsettings.json")
                         .Build();
 
 var builder = WebHost.CreateDefaultBuilder();

@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj": {}
+    "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj": {}
   },
   "projects": {
-    "/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj": {
+    "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj",
+        "projectUniqueName": "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj",
         "projectName": "SMS_EMAIL_GATEWAY",
-        "projectPath": "/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/administrator/temp_projects/SMS_EMAIL_GATEWAY/obj/",
+        "projectPath": "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj",
+        "packagesPath": "/home/pravin_dev@sourceinfosys.in/.nuget/packages/",
+        "outputPath": "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/pravin_dev@sourceinfosys.in/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "/var/NuGet_Packages": {},
-          "/var/NuGet_Packages/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -13,7 +13,7 @@ public class homeSrv
 {
     smsService sms =new smsService();
     dbServices ds=new dbServices();
-    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("Properties/appsettings.json").Build();
+    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
     public homeSrv(){}
 
 

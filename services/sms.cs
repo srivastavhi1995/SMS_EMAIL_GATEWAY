@@ -7,7 +7,7 @@ using System.Web;
 using Microsoft.Extensions.Configuration;
 
 public class smsService{
-    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("Properties/appsettings.json").Build();
+    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
  /// <summary>
         /// Method to encrypt password
         /// </summary>

@@ -17,7 +17,7 @@ public class loginSignup
 {
     smsService sms =new smsService();
     dbServices ds=new dbServices();
-    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("Properties/appsettings.json").Build();
+    IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
     private readonly dbSettings _ds;
     private readonly IMongoCollection<personal> _personalCollection;

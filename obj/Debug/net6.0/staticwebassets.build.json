@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "a34z21RgAVmIDT4jH8b+WG27nmyX3nOkfn1d4sB88Cc=",
-  "Source": "SMS_EMAIL_GATEWAY",
-  "BasePath": "_content/SMS_EMAIL_GATEWAY",
+  "Hash": "yOf525cw19ZX4nfIv0HzaHNHX2YIb9km3NCksS0H74g=",
+  "Source": "sourceSMSEmailGateway",
+  "BasePath": "_content/sourceSMSEmailGateway",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

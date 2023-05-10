@@ -6,16 +6,17 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "SMS_EMAIL_GATEWAY/1.0.0": {
+      "sourceSMSEmailGateway/1.0.0": {
         "dependencies": {
           "IdentityServer4": "4.1.1",
           "MySql.Data": "8.0.27",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",
           "MongoDB.Driver": "2.19.1",
-          "RabbitMQ.Client": "6.4.0"
+          "RabbitMQ.Client": "6.4.0",
+          "System.Json": "4.7.1"
         },
         "runtime": {
-          "SMS_EMAIL_GATEWAY.dll": {}
+          "sourceSMSEmailGateway.dll": {}
         }
       },
       "AWSSDK.Core/3.7.100.14": {
@@ -429,6 +430,14 @@
           }
         }
       },
+      "System.Json/4.7.1": {
+        "runtime": {
+          "lib/netstandard2.0/System.Json.dll": {
+            "assemblyVersion": "2.0.8.0",
+            "fileVersion": "4.700.20.21406"
+          }
+        }
+      },
       "System.Memory/4.5.4": {},
       "System.Runtime.CompilerServices.Unsafe/5.0.0": {},
       "System.Security.AccessControl/5.0.0": {
@@ -504,7 +513,7 @@
     }
   },
   "libraries": {
-    "SMS_EMAIL_GATEWAY/1.0.0": {
+    "sourceSMSEmailGateway/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -753,6 +762,13 @@
       "sha512": "sha512-KMvPpX4exs2fe7Upq5zHMSR4yupc+jy8WG8yjucZL0XvT+r/T0hRvLIe9fP/SeN8/UVxFYBRAkRI5k1zbRGqmA==",
       "path": "system.identitymodel.tokens.jwt/5.6.0",
       "hashPath": "system.identitymodel.tokens.jwt.5.6.0.nupkg.sha512"
+    },
+    "System.Json/4.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XymImdgljgVEkd9trFSKWlNJac1Hr+L9lwFLQSUUQfFMkm88AHI6DINAMhpoiUWQIPLIqEjR702eydUb4Qb3Ng==",
+      "path": "system.json/4.7.1",
+      "hashPath": "system.json.4.7.1.nupkg.sha512"
     },
     "System.Memory/4.5.4": {
       "type": "package",

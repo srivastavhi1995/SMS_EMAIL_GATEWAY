@@ -28,33 +28,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 
-//var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
-
-// var factory = new ConnectionFactory
-// {
-//     HostName = "180.180.180.100",
-//     UserName ="echs_mobile_subscribe",
-//     VirtualHost="echs_api_broker",
-//     Password="tech*1978",
-//     Port=5672
-// };
-
-// IConnection conn = factory.CreateConnection();
-// var connection = factory.CreateConnection();
-// using var channel = connection.CreateModel();
-// channel.QueueDeclare("reg_sms1", exclusive: false);
-
-// var consumer = new EventingBasicConsumer(channel);
-// consumer.Received += (model, eventArgs) =>
-// {
-//     var body = eventArgs.Body.ToArray();
-//     var message = Encoding.UTF8.GetString(body);
-//     Console.WriteLine($"Message received: {message}");
-// };
-
-// channel.BasicConsume(queue: "reg_sms1", autoAck: true, consumer: consumer);
-// //Console.ReadKey();
 IConfiguration appsettings = new ConfigurationBuilder()
                         .AddJsonFile("appsettings.json")
                         .Build();
@@ -64,11 +37,9 @@ var builder = WebHost.CreateDefaultBuilder();
 WebHost.CreateDefaultBuilder().
 ConfigureServices(s =>
 {
-
-    s.Configure<dbSettings>(appsettings.GetSection(key:"mongodb"));
-    s.AddSingleton<loginSignup>();// this service will validate users and generate java web tokens
-    s.AddSingleton<homeSrv>();
-    //s.AddSingleton<ContactService>(); 
+    //s.Configure<dbSettingsMongo>(appsettings.GetSection(key:"mongodb"));
+    s.AddSingleton<apiServiceVerifyOTP>();// this service will validate users and generate java web tokens
+    s.AddSingleton<mqSubscribeService>(); 
     // s.AddCors(options =>
     // {
     //     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -95,14 +66,8 @@ ConfigureServices(s =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appsettings["Jwt:Key"]))
         };
     });
-
-
     s.AddCors();
-    s.AddHttpClient<TestServiceRequest>(); // this is to access access api server to server
     s.AddControllers();
-
-
-
 }).
 Configure(app =>
 {
@@ -123,32 +88,29 @@ Configure(app =>
 
     app.UseEndpoints(e=> 
     {
-        var loginSignup = e.ServiceProvider.GetRequiredService<loginSignup>();
-        var homeSrv = e.ServiceProvider.GetRequiredService<homeSrv>();
-        var testService = e.ServiceProvider.GetRequiredService<TestServiceRequest>();
- 
         try
         {
+            var apiSrvVerifyOTP = e.ServiceProvider.GetRequiredService<apiServiceVerifyOTP>();
+            var mqSubscribeServ = e.ServiceProvider.GetRequiredService<mqSubscribeService>();
+
             e.MapPost("/login", 
             [AllowAnonymous] async (HttpContext http) => 
             {
                 
                 //IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
-
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
                 requestData rData = JsonSerializer.Deserialize<requestData>(body); 
-                if(rData.eventID=="1") // login
-                    await http.Response.WriteAsJsonAsync(await loginSignup.ValidateUser(rData));
-                else if(rData.eventID=="2") // send OTP
-                    await http.Response.WriteAsJsonAsync(await loginSignup.sendOTP(rData));
-                else if(rData.eventID=="3") // verify OTP
-                    await http.Response.WriteAsJsonAsync(await loginSignup.validateOTP(rData));
+                if(rData.eventID=="1") // VerifyOTPSMS
+                    await http.Response.WriteAsJsonAsync(await apiSrvVerifyOTP.VerifyOTP(rData));
+                // else if(rData.eventID=="2") // send OTP
+                //     await http.Response.WriteAsJsonAsync(await loginSignup.insertTest(rData));
+                // else if(rData.eventID=="3") // verify OTP
+                //     await http.Response.WriteAsJsonAsync(await loginSignup.insertTest(rData));
                 
                 // String  a = "Hellotext";
                 // //if(ur)
                 // var unm="pravinsingh";
-                // var uid="001"+Guid.NewGuid().ToString();
+                // var uid="001"+Guid.NewGuid().ToString();s
 
                 // //GENERATE TOKEN HERE IF USER IS VALID
                 // var claims = new[]
@@ -167,49 +129,23 @@ Configure(app =>
                 // return;
             });
 
-            e.MapPost("/home", 
-            [Authorize] async (HttpContext http) => 
-            {
-                
-                //IConfiguration appsettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
-
-                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
-                requestData rData = JsonSerializer.Deserialize<requestData>(body); 
-                if(rData.eventID=="1") // login
-                    await http.Response.WriteAsJsonAsync(await homeSrv.getHomeDetails(rData));
-                else if(rData.eventID=="2") // send OTP
-                    await http.Response.WriteAsJsonAsync(await homeSrv.getHomeDetails(rData));
-                else if(rData.eventID=="3") // verify OTP
-                    await http.Response.WriteAsJsonAsync(await homeSrv.getHomeDetails(rData));
-                
-
-            });
-
-
 
             e.MapGet("/bing",
                 //async c => await c.Response.WriteAsJsonAsync(await contactService.GetAll()));
                 //async c => await c.Response.WriteAsync("Hello how are you"));
                 async c => await c.Response.WriteAsJsonAsync("{'Name':'Pravin','Age':'43'}"));
             //e.MapGet("/contacts/{id:int}",
-            e.MapGet("/bing1",
-                async c =>  await c.Response.WriteAsJsonAsync(await loginSignup.getDetailsMongo(null)));
-            e.MapGet("/bing2",
-                async c => await c.Response.WriteAsJsonAsync(await loginSignup.createCollection(null)));
-            e.MapGet("/insert",
-                async c => await c.Response.WriteAsJsonAsync(await loginSignup.insertTest(null)));
+            //e.MapGet("/bing2",
+            //    async c => await c.Response.WriteAsJsonAsync(await loginSignup.insertTest(null)));
+            //e.MapGet("/insert",
+            //    async c => await c.Response.WriteAsJsonAsync(await loginSignup.insertTest(null)));
             //e.MapGet("/update",
             //    async c => await c.Response.WriteAsJsonAsync(await loginSignup.updateTest(null)));
                 //async c => await c.Response.WriteAsJsonAsync(await contactService.GetAll()));
                 //async c => await c.Response.WriteAsync("Hello how are you"));
                 //async c => await c.Response.WriteAsJsonAsync("{'Name':'Pravin','Age':'43'}"));
                 //e.MapGet("/contacts/{id:int}",
-            e.MapGet("/contacts",
-            [Authorize] async (HttpContext http) => 
-            {
-                await http.Response.WriteAsync(await testService.GetAllContacts());
-            }); 
+
 
             e.MapPost("/bing",
                 //async c => await c.Response.WriteAsJsonAsync(await testService.GetAllContacts()));
@@ -226,6 +162,7 @@ Configure(app =>
 
     });
 }).Build().Run();
+
  
 public record requestData{ //request data
 //SOURCE.srv.fn_CS({ rID: "F000", rData: {encData: encrypted}}, page_OS, $("#progressBarFooter")[0]);
@@ -251,88 +188,3 @@ public record responseData{ //response data
         //public ArrayList rData {get;set;}
 }
 
-
-public class personal
-{
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id {get;set;}
-    public string? Name { get; set; }
-    public string? DOB { get; set; }
-    public string? Salary { get; set; }
-    public string? Age { get; set; }
-
-}
-
-public class TestServiceRequest
-{
-    private readonly HttpClient _httpClient;
-
-
-    // returns a JSON String 
-    public String executeSQL(String sql, String prm)
-    {
-        return "";
-    }
-
-    public TestServiceRequest(HttpClient httpClient)
-    {
-        var _httpClient = httpClient;
-        _httpClient.BaseAddress = new Uri("http://localhost:5002/");
-
-        // using Microsoft.Net.Http.Headers;
-        // The GitHub API requires two headers.
-        // _httpClient.DefaultRequestHeaders.Add(
-        // HeaderNames.Accept, "application/vnd.github.v3+json");
-        // _httpClient.DefaultRequestHeaders.Add(
-        // HeaderNames.UserAgent, "HttpRequestsSample");
-    }
-
-    public async Task<String> GetAllContacts() // this function is called when ever a mapped link is typed
-    {
-        // get sql data here
-             MySqlConnection conn = null;
-             String s="";
-             var sb = new MySqlConnectionStringBuilder
-             {
-                 Server = "127.0.0.1",
-                 UserID = "root",
-                 Password = "admin*123",
-                 Port = 3306,
-                 Database = "leads"
-             };
- 
-             try
-             {
-                 Console.WriteLine(sb.ConnectionString);
-                 conn = new MySqlConnection(sb.ConnectionString);
-                 conn.Open();
-                 MySqlTransaction t = conn.BeginTransaction();
-                 
-                 var cmd = conn.CreateCommand();
-                 cmd.CommandText = "SELECT * FROM test;";
-                 var reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-                 //String s ="";
-                 while (reader.Read())
-                 {
-                     s = s+ " " + reader.GetInt32("id") + " " + reader.GetString("Name")+"\n";
-                 }
-             }
-             catch (MySqlException ex)
-             {
-                 Console.Write(ex.Message);
-             }
-             finally
-             {
-                 if (conn != null)
-                     conn.Close();
-             }
-        // sql test ends here
-
-
-
-        String x = "";//await _httpClient.GetStringAsync("contacts");
-        return x + "ADDED STRING FROM DB" + s;
-    }
-        
-}

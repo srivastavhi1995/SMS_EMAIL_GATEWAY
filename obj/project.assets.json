@@ -487,6 +487,15 @@
           "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
         }
       },
+      "System.Json/4.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Json.dll": {}
+        }
+      },
       "System.Memory/4.5.4": {
         "type": "package",
         "compile": {
@@ -1435,6 +1444,40 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
+    "System.Json/4.7.1": {
+      "sha512": "XymImdgljgVEkd9trFSKWlNJac1Hr+L9lwFLQSUUQfFMkm88AHI6DINAMhpoiUWQIPLIqEjR702eydUb4Qb3Ng==",
+      "type": "package",
+      "path": "system.json/4.7.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/Xamarinmac20/_._",
+        "lib/monoandroid10/_._",
+        "lib/monotouch10/_._",
+        "lib/net461/System.Json.dll",
+        "lib/net461/System.Json.xml",
+        "lib/netstandard1.0/System.Json.dll",
+        "lib/netstandard1.0/System.Json.xml",
+        "lib/netstandard2.0/System.Json.dll",
+        "lib/netstandard2.0/System.Json.xml",
+        "lib/xamarinios10/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/Xamarinmac20/_._",
+        "ref/monoandroid10/_._",
+        "ref/monotouch10/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.json.4.7.1.nupkg.sha512",
+        "system.json.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Memory/4.5.4": {
       "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
       "type": "package",
@@ -1861,23 +1904,24 @@
       "MYSQL.DATA >= 8.0.27",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.9",
       "MongoDB.Driver >= 2.19.1",
-      "RabbitMQ.Client >= 6.4.0"
+      "RabbitMQ.Client >= 6.4.0",
+      "System.Json >= 4.7.1"
     ]
   },
   "packageFolders": {
-    "/home/pravin_dev@sourceinfosys.in/.nuget/packages/": {}
+    "/Users/pravinsingh/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj",
-      "projectName": "SMS_EMAIL_GATEWAY",
-      "projectPath": "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/SMS_EMAIL_GATEWAY.csproj",
-      "packagesPath": "/home/pravin_dev@sourceinfosys.in/.nuget/packages/",
-      "outputPath": "/home/pravin_dev@sourceinfosys.in/temp_projects/SMS_EMAIL_GATEWAY/obj/",
+      "projectUniqueName": "/Users/pravinsingh/projects/sourceSMSEmailGateway/sourceSMSEmailGateway.csproj",
+      "projectName": "sourceSMSEmailGateway",
+      "projectPath": "/Users/pravinsingh/projects/sourceSMSEmailGateway/sourceSMSEmailGateway.csproj",
+      "packagesPath": "/Users/pravinsingh/.nuget/packages/",
+      "outputPath": "/Users/pravinsingh/projects/sourceSMSEmailGateway/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/pravin_dev@sourceinfosys.in/.nuget/NuGet/NuGet.Config"
+        "/Users/pravinsingh/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1920,6 +1964,10 @@
           "RabbitMQ.Client": {
             "target": "Package",
             "version": "[6.4.0, )"
+          },
+          "System.Json": {
+            "target": "Package",
+            "version": "[4.7.1, )"
           }
         },
         "imports": [
@@ -1940,7 +1988,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.116/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

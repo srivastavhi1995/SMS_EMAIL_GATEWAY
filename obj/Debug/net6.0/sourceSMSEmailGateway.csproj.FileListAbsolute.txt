@@ -65,3 +65,137 @@
 /Users/pravinsingh/projects/sourceSMSEmailGateway/obj/Debug/net6.0/sourceSMSEmailGateway.pdb
 /Users/pravinsingh/projects/sourceSMSEmailGateway/obj/Debug/net6.0/sourceSMSEmailGateway.genruntimeconfig.cache
 /Users/pravinsingh/projects/sourceSMSEmailGateway/bin/Debug/net6.0/System.Json.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\appsettings.json
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.exe
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.deps.json
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.runtimeconfig.json
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.pdb
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\AWSSDK.Core.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\DnsClient.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Google.Protobuf.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\IdentityModel.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\IdentityServer4.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\IdentityServer4.Storage.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Bson.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Driver.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\MySql.Data.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\ZstdNet.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\RabbitMQ.Client.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\SharpCompress.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\Snappier.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\System.Json.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\ZstdSharp.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.csproj.AssemblyReference.cache
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.GeneratedMSBuildEditorConfig.editorconfig
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.AssemblyInfoInputs.cache
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.AssemblyInfo.cs
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.csproj.CoreCompileInputs.cache
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.MvcApplicationPartsAssemblyInfo.cache
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\staticwebassets.build.json
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\staticwebassets.development.json
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\scopedcss\bundle\sourceSMSEmailGateway.styles.css
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.csproj.CopyComplete
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\refint\sourceSMSEmailGateway.dll
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.pdb
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.genruntimeconfig.cache
+D:\JAVED\Common API\sourceSMSEmailGateway\obj\Debug\net6.0\ref\sourceSMSEmailGateway.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\appsettings.json
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.exe
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.deps.json
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.runtimeconfig.json
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\sourceSMSEmailGateway.pdb
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\AWSSDK.Core.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\DnsClient.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Google.Protobuf.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\IdentityModel.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\IdentityServer4.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\IdentityServer4.Storage.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Bson.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Driver.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\MySql.Data.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Ubiety.Dns.Core.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\ZstdNet.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\RabbitMQ.Client.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\SharpCompress.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\Snappier.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\System.Json.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\ZstdSharp.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.csproj.AssemblyReference.cache
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.AssemblyInfoInputs.cache
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.AssemblyInfo.cs
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.csproj.CoreCompileInputs.cache
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.MvcApplicationPartsAssemblyInfo.cache
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\staticwebassets.build.json
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\staticwebassets.development.json
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\scopedcss\bundle\sourceSMSEmailGateway.styles.css
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.csproj.CopyComplete
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\refint\sourceSMSEmailGateway.dll
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.pdb
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\sourceSMSEmailGateway.genruntimeconfig.cache
+D:\Dotnet\PROJECTS\new_auth\new_auth\sourceSMSEmailGateway\obj\Debug\net6.0\ref\sourceSMSEmailGateway.dll

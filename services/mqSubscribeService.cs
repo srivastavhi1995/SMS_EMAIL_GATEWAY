@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -12,14 +13,14 @@ using MySql.Data.MySqlClient;
 
 public class mqSubscribeService
 {
-    private   rabbitSrvc _rs = new rabbitSrvc("rabbit"); // more objects can be created for diffrent rabbit servers and settings
-    private   dbServiceMongo _ds = new dbServiceMongo("mongodb");
-    private   serviceEmail _ms = new serviceEmail("mail");
+    private rabbitSrvc _rs = new rabbitSrvc("rabbit"); // more objects can be created for diffrent rabbit servers and settings
+    private dbServiceMongo _ds = new dbServiceMongo("mongodb");
+    private serviceEmail _ms = new serviceEmail("mail");
     private serviceSmsCdac _ss = new serviceSmsCdac("sms_cdac");
-    private   serviceSmsCdac _ssCdac = new serviceSmsCdac("sms_cdac");
-    private   serviceSmsSource _ssSource = new serviceSmsSource("sms_source");
-    private String _smsGatewayName="mail";
-    private String _emailGatewayName="sms";
+    private serviceSmsCdac _ssCdac = new serviceSmsCdac("sms_cdac");
+
+    private String _smsGatewayName = "mail";
+    private String _emailGatewayName = "sms";
 
     //private readonly dbSettingsMongo _ds;
     public mqSubscribeService()
@@ -29,36 +30,45 @@ public class mqSubscribeService
         _emailGatewayName = appsettings["service_config:email_gateway"];
 
         _rs.subscribeQueue("generate_otp_and_send_q", false, onMsgRecvdGenOtpSend);
+
         bool onMsgRecvdGenOtpSend(Dictionary<string, object> recievedData)
         {
             try
             {
                 var otp = new Random().Next(100000, 999999);
-                var filterJson="";
-                
-                if(recievedData["auth_fields"].ToString()=="only_mobile")
+                var filterJson = "";
+
+                if (recievedData["auth_fields"].ToString() == "only_mobile")
                 {
+                    DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
                     filterJson = $@"{{
                     'mobile_no': '{recievedData["mobile_no"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
-                    'valid_till': {{ '$gt':{{'$date':'{DateTime.UtcNow.ToString()}'}}}}
+                    'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}}
                     }}";
                 }
                 else if (recievedData["auth_fields"].ToString() == "only_email")
                 {
+                    DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
                     filterJson = $@"{{
                     'email_id': '{recievedData["email_id"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
-                    'valid_till': {{ '$gt':{{'$date':'{DateTime.UtcNow.ToString()}'}}}}
+                    'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}}
                     }}";
+
+
                 }
                 else if (recievedData["auth_fields"].ToString() == "email_and_mobile")
                 {
+                    DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
                     filterJson = $@"{{
                     'email_id': '{recievedData["email_id"].ToString()}',
                     'mobile_no': '{recievedData["mobile_no"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
-                    'valid_till': {{ '$gt':{{'$date':'{DateTime.UtcNow.ToString()}'}}}}
+                    'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}}
                     }}";
                 }
 
@@ -71,14 +81,14 @@ public class mqSubscribeService
 
                 mongoRequest mRequest = new mongoRequest();
                 mRequest.newRequestStatement(0, "(email_sms_svc)-(otp)", filters, projection, null, null);
-                
+
                 //mStatements._mStatements
-            
+
                 //mongoStatements ms = new mongoStatements(0,"(email_sms_svc)-(otp)",filters,projection,null,null); // initialize 
                 //mStatements.Add(new mongoStatements(0, "(email_sms_svc)-(otp)", filters, projection, null, null));
 
                 // getAwaiter.getResult is used here as this method dosent have async or task 
-                mongoResponse mResponse = _ds.executeStatements(mRequest,false).GetAwaiter().GetResult();
+                mongoResponse mResponse = _ds.executeStatements(mRequest, false).GetAwaiter().GetResult();
                 var result = mResponse._resStatements[0]._selectedResults;
 
                 if (result.Count == 0) // if record not found
@@ -95,14 +105,13 @@ public class mqSubscribeService
                             {"app_id",recievedData["app_id"].ToString()},
                             {"otp",otp},
                             {"otp_type",recievedData["otp_type"].ToString()},
-                            {"valid_till",DateTime.UtcNow.AddMinutes(10)},
-                            {"template_id",recievedData["template_id"].ToString()}
+                            {"valid_till",DateTime.UtcNow.AddMinutes(10)}
                         }
                     };
 
                     mRequest = new mongoRequest();
                     mRequest.newRequestStatement(1, "(email_sms_svc)-(otp)", null, null, null, documents);
-                    _ds.executeStatements(mRequest,false);
+                    _ds.executeStatements(mRequest, false);
                 }
                 else
                 {
@@ -118,7 +127,7 @@ public class mqSubscribeService
                 if (recievedData["auth_fields"].ToString() == "only_mobile")
                 {
                     //_ss.SendSMS(mobile_no, msg); 
-                    return true;                   
+                    return true;
                 }
                 else if (recievedData["auth_fields"].ToString() == "only_email")
                 {
@@ -143,7 +152,7 @@ public class mqSubscribeService
             }
         }
 
-        _rs.subscribeQueue("send_message_q", false, onMsgRecvdSend);
+        _rs.subscribeQueue("generate_otp_and_send_q", false, onMsgRecvdSend);
         bool onMsgRecvdSend(Dictionary<string, object> recievedData)
         {
             try
@@ -152,8 +161,8 @@ public class mqSubscribeService
                 var mobile_no = recievedData["mobile_no"].ToString();
                 var country_code = recievedData["country_code"].ToString();
                 var message = recievedData["message"].ToString();
-                var templateID =  recievedData["template_id"].ToString();
-                _ss.SendSMS(mobile_no, message, templateID);
+                // var message = "SourceDotCom";
+                _ss.SendSMS(mobile_no, message);
                 return true;// send acknoledgement 
 
             }

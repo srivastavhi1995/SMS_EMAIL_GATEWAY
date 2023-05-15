@@ -30,7 +30,8 @@ public class serviceSmsCdac
         _Password = appsettings[settingsKey + ":Password"];
         _UserName = appsettings[settingsKey + ":UserName"];
         _SenderId = appsettings[settingsKey + ":SenderId"];
-        _SecureKey = appsettings[settingsKey + ":SecureKey"]; 
+        _SecureKey = appsettings[settingsKey + ":SecureKey"];
+        _TemplateId = appsettings[settingsKey + ":TemplateId"];
 
     }
 
@@ -39,7 +40,7 @@ public class serviceSmsCdac
     /// </summary>
     /// <param name="phoneNumber"></param>
     /// <returns></returns>
-    public string SendSMS(string phoneNumber, string message, string templateID)
+    public string SendSMS(string phoneNumber, string message)
     {
         return "true";
         // appsettings["cdac:SmsServerUrl"]
@@ -76,7 +77,7 @@ public class serviceSmsCdac
                             "&mobileno=" + HttpUtility.UrlEncode(phoneNumber) +
                             "&senderid=" + HttpUtility.UrlEncode(_SenderId.Trim()) +
                             "&key=" + HttpUtility.UrlEncode(key.Trim()) +
-                            "&templateid=" + HttpUtility.UrlEncode(templateID.Trim());
+                            "&templateid=" + HttpUtility.UrlEncode(_TemplateId.Trim());
 
             byte[] byteArray = Encoding.ASCII.GetBytes(query);
             request.ContentType = "application/x-www-form-urlencoded";

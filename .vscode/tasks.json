@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/SMS_EMAIL_GATEWAY.csproj",
+                "${workspaceFolder}/sourceSMSEmailGateway.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/SMS_EMAIL_GATEWAY.csproj",
+                "${workspaceFolder}/sourceSMSEmailGateway.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,10 +32,19 @@
             "args": [
                 "watch",
                 "run",
-                "--project",
-                "${workspaceFolder}/SMS_EMAIL_GATEWAY.csproj"
+                "${workspaceFolder}/sourceSMSEmailGateway.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
+        {
+            "type": "shell",
+            "label": "copyAppSettings",
+            "command" : "cp",
+            // xcrun simctl list | egrep '(Booted)' -- this will list device id of booted device
+            // find pplication id or look for the folder containing echsapp.db and use that path as target
+            "args": ["${workspaceFolder}/appsettings.json", "${workspaceFolder}/bin/"],
+        },
     ]
 }

@@ -1909,19 +1909,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/pravinsingh/.nuget/packages/": {}
+    "C:\\Users\\vishal\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/pravinsingh/projects/sourceSMSEmailGateway/sourceSMSEmailGateway.csproj",
+      "projectUniqueName": "D:\\Dotnet\\PROJECTS\\new_auth\\new_auth\\sourceSMSEmailGateway\\sourceSMSEmailGateway.csproj",
       "projectName": "sourceSMSEmailGateway",
-      "projectPath": "/Users/pravinsingh/projects/sourceSMSEmailGateway/sourceSMSEmailGateway.csproj",
-      "packagesPath": "/Users/pravinsingh/.nuget/packages/",
-      "outputPath": "/Users/pravinsingh/projects/sourceSMSEmailGateway/obj/",
+      "projectPath": "D:\\Dotnet\\PROJECTS\\new_auth\\new_auth\\sourceSMSEmailGateway\\sourceSMSEmailGateway.csproj",
+      "packagesPath": "C:\\Users\\vishal\\.nuget\\packages\\",
+      "outputPath": "D:\\Dotnet\\PROJECTS\\new_auth\\new_auth\\sourceSMSEmailGateway\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/pravinsingh/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\vishal\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1988,7 +1988,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

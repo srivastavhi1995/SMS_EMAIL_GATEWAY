@@ -18,6 +18,7 @@ public class mqSubscribeService
     private serviceEmail _ms = new serviceEmail("mail");
     private serviceSmsCdac _ss = new serviceSmsCdac("sms_cdac");
     private serviceSmsCdac _ssCdac = new serviceSmsCdac("sms_cdac");
+    private serviceSmsSource _ss_sdc = new serviceSmsSource("sourceSMS");
 
     private String _smsGatewayName = "mail";
     private String _emailGatewayName = "sms";
@@ -40,8 +41,9 @@ public class mqSubscribeService
 
                 if (recievedData["auth_fields"].ToString() == "only_mobile")
                 {
-                    DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                    string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                   // DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                   // string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                    string formattedDate =DateTime.UtcNow.ToString();
                     filterJson = $@"{{
                     'mobile_no': '{recievedData["mobile_no"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
@@ -122,11 +124,11 @@ public class mqSubscribeService
 
                 var mobile_no = recievedData["mobile_no"].ToString();
                 var email_id = recievedData["email_id"].ToString();
-                var msg = "Six Digit OTP is " + otp;
-
+                //var msg = "Six Digit OTP is " + otp;
+                var msg = otp.ToString() + " is your One Time Password (OTP) for AR SPARSH APP Registration for your Regimental Number "+ otp.ToString() +". - SOURCEDOTCOM PVT LTD";
                 if (recievedData["auth_fields"].ToString() == "only_mobile")
                 {
-                    //_ss.SendSMS(mobile_no, msg); 
+                    _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
                     return true;
                 }
                 else if (recievedData["auth_fields"].ToString() == "only_email")
@@ -152,27 +154,7 @@ public class mqSubscribeService
             }
         }
 
-        _rs.subscribeQueue("generate_otp_and_send_q", false, onMsgRecvdSend);
-        bool onMsgRecvdSend(Dictionary<string, object> recievedData)
-        {
-            try
-            {
-                //Dictionary<string,object> headers = (Dictionary<string,object>)recievedProps["headers"];
-                var mobile_no = recievedData["mobile_no"].ToString();
-                var country_code = recievedData["country_code"].ToString();
-                var message = recievedData["message"].ToString();
-                // var message = "SourceDotCom";
-                _ss.SendSMS(mobile_no, message);
-                return true;// send acknoledgement 
-
-            }
-            catch (SmtpException ex)
-            {
-                Console.WriteLine(ex.ToString());
-                return false;// send negative ack to rabbit
-
-            }
-        }
+       
 
     }
 

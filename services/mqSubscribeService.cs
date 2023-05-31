@@ -47,7 +47,7 @@ public class mqSubscribeService
                     filterJson = $@"{{
                     'mobile_no': '{recievedData["mobile_no"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
-                    'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}}
+                    'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
                     }}";
                 }
                 else if (recievedData["auth_fields"].ToString() == "only_email")
@@ -57,7 +57,7 @@ public class mqSubscribeService
                     filterJson = $@"{{
                     'email_id': '{recievedData["email_id"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
-                    'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}}
+                    'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
                     }}";
 
 
@@ -70,7 +70,7 @@ public class mqSubscribeService
                     'email_id': '{recievedData["email_id"].ToString()}',
                     'mobile_no': '{recievedData["mobile_no"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
-                    'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}}
+                    'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
                     }}";
                 }
 
@@ -107,7 +107,7 @@ public class mqSubscribeService
                             {"app_id",recievedData["app_id"].ToString()},
                             {"otp",otp},
                             {"otp_type",recievedData["otp_type"].ToString()},
-                            {"valid_till",DateTime.UtcNow.AddMinutes(10)}
+                            {"valid_till",new BsonDateTime(DateTime.UtcNow.AddMinutes(10))}
                         }
                     };
 

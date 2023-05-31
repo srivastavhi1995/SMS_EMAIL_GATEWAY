@@ -45,10 +45,11 @@ public class apiServiceVerifyOTP
                 //DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                 //string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
                 string formattedDate = DateTime.UtcNow.ToString();
-                filterJson = $@"{{
-                'mobile_no': '{req.addInfo["country_code"].ToString().Trim() + req.addInfo["mobile_no"].ToString().Trim()}',
+                filterJson = $@"{{ 
+                    'country_code': '{req.addInfo["country_code"].ToString()}',
+                'mobile_no': '{req.addInfo["mobile_no"].ToString().Trim()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
-                'valid_till': {{ '$gt':{{'$date':'{DateTime.UtcNow.ToString()}'}}}},
+                'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}},
                 'otp':{req.addInfo["otp"].ToString()},
                 }}";
 
@@ -64,7 +65,7 @@ public class apiServiceVerifyOTP
                 filterJson = $@"{{
                 'email_id': '{req.addInfo["email_id"].ToString()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
-                'valid_till': {{ '$gt':{{'$date':'{DateTime.UtcNow.ToString()}'}}}},
+                'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}},
                 'otp':{req.addInfo["otp"].ToString()}
                 }}";
 
@@ -79,9 +80,10 @@ public class apiServiceVerifyOTP
                //     string formattedDate = DateTime.UtcNow.ToString();
                 filterJson = $@"{{
                 'email_id': '{req.addInfo["email_id"].ToString()}',
-                'mobile_no': '{req.addInfo["country_code"].ToString().Trim() + req.addInfo["mobile_no"].ToString().Trim()}',
+                'country_code': '{req.addInfo["country_code"].ToString()}',
+                'mobile_no': '{req.addInfo["mobile_no"].ToString().Trim()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
-                'valid_till': {{ '$gt':{{'$date':'{ DateTime.UtcNow.ToString()}'}}}},
+                'valid_till': {{ '$gt':{{'$date':'{ new BsonDateTime(DateTime.UtcNow)}'}}}},
                 'otp':{req.addInfo["otp"].ToString()}
                 }}";
 

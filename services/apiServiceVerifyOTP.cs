@@ -42,12 +42,13 @@ public class apiServiceVerifyOTP
 
             if (req.addInfo["auth_fields"].ToString() == "only_mobile") // only mobile no
             {
-                DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                //DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                //string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                string formattedDate = DateTime.UtcNow.ToString();
                 filterJson = $@"{{
                 'mobile_no': '{req.addInfo["country_code"].ToString().Trim() + req.addInfo["mobile_no"].ToString().Trim()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
-                'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}},
+                'valid_till': {{ '$gt':{{'$date':'{DateTime.UtcNow.ToString()}'}}}},
                 'otp':{req.addInfo["otp"].ToString()},
                 }}";
 
@@ -57,12 +58,13 @@ public class apiServiceVerifyOTP
             }
             else if (req.addInfo["auth_fields"].ToString() == "only_email") // only email id 
             {
-                DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                //DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                //string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                    string formattedDate = DateTime.UtcNow.ToString();
                 filterJson = $@"{{
                 'email_id': '{req.addInfo["email_id"].ToString()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
-                'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}},
+                'valid_till': {{ '$gt':{{'$date':'{DateTime.UtcNow.ToString()}'}}}},
                 'otp':{req.addInfo["otp"].ToString()}
                 }}";
 
@@ -72,13 +74,14 @@ public class apiServiceVerifyOTP
             }
             else if (req.addInfo["auth_fields"].ToString() == "email_and_mobile") // email id and mobile
             {
-                DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+               // DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+               // string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+               //     string formattedDate = DateTime.UtcNow.ToString();
                 filterJson = $@"{{
                 'email_id': '{req.addInfo["email_id"].ToString()}',
                 'mobile_no': '{req.addInfo["country_code"].ToString().Trim() + req.addInfo["mobile_no"].ToString().Trim()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
-                'valid_till': {{ '$gt':{{'$date':'{formattedDate}'}}}},
+                'valid_till': {{ '$gt':{{'$date':'{ DateTime.UtcNow.ToString()}'}}}},
                 'otp':{req.addInfo["otp"].ToString()}
                 }}";
 

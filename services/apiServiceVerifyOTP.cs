@@ -16,10 +16,10 @@ using System.Globalization;
 
 public class apiServiceVerifyOTP
 {
-    private  readonly dbServiceMongo _ds; // this can be changed if more connections are required by this service like below
+    private readonly dbServiceMongo _ds; // this can be changed if more connections are required by this service like below
     public apiServiceVerifyOTP()
     {
-         _ds = new dbServiceMongo("mongodb");
+        _ds = new dbServiceMongo("mongodb");
     }
 
     public async Task<responseData> VerifyOTP(requestData req)
@@ -28,7 +28,7 @@ public class apiServiceVerifyOTP
         resData.rStatus = 0;
         resData.rData["rCode"] = 0;
         resData.rData["rMessage"] = "Success";
-        
+
         try
         {
 
@@ -37,8 +37,8 @@ public class apiServiceVerifyOTP
             // 'guid': '{req.addInfo["guid"].ToString()}',
             // 'valid_till': {{'$gt': '{DateTime.UtcNow}'}}
             // }}";
-            var filterJson="";
-            var projectionJson="";
+            var filterJson = "";
+            var projectionJson = "";
 
             if (req.addInfo["auth_fields"].ToString() == "only_mobile") // only mobile no
             {
@@ -51,6 +51,7 @@ public class apiServiceVerifyOTP
                 'guid': '{req.addInfo["guid"].ToString()}',
                 'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}},
                 'otp':{req.addInfo["otp"].ToString()},
+                'otp_type':'1',
                 }}";
 
                 projectionJson = @"{
@@ -61,11 +62,12 @@ public class apiServiceVerifyOTP
             {
                 //DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                 //string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
-                    string formattedDate = DateTime.UtcNow.ToString();
+                string formattedDate = DateTime.UtcNow.ToString();
                 filterJson = $@"{{
                 'email_id': '{req.addInfo["email_id"].ToString()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
                 'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}},
+                 'otp_type':'2',
                 'otp':{req.addInfo["otp"].ToString()}
                 }}";
 
@@ -75,15 +77,16 @@ public class apiServiceVerifyOTP
             }
             else if (req.addInfo["auth_fields"].ToString() == "email_and_mobile") // email id and mobile
             {
-               // DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-               // string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
-               //     string formattedDate = DateTime.UtcNow.ToString();
+                // DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                // string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                //     string formattedDate = DateTime.UtcNow.ToString();
                 filterJson = $@"{{
                 'email_id': '{req.addInfo["email_id"].ToString()}',
                 'country_code': '{req.addInfo["country_code"].ToString()}',
                 'mobile_no': '{req.addInfo["mobile_no"].ToString().Trim()}',
                 'guid': '{req.addInfo["guid"].ToString()}',
-                'valid_till': {{ '$gt':{{'$date':'{ new BsonDateTime(DateTime.UtcNow)}'}}}},
+                 'otp_type':'1',
+                'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}},
                 'otp':{req.addInfo["otp"].ToString()}
                 }}";
 
@@ -118,9 +121,53 @@ public class apiServiceVerifyOTP
             var result = mResponse._resStatements[0]._selectedResults;
 
 
-            if(result.Count > 0)
+            if (result.Count > 0)
             {
                 resData.rData["rMessage"] = "Valid OTP";
+                // check for email OTP 
+                try
+                {
+
+                    if (req.addInfo["email_otp"].ToString() != "")
+                    {
+                        filterJson = $@"{{
+                'email_id': '{req.addInfo["email_id"].ToString()}',
+                'country_code': '{req.addInfo["country_code"].ToString()}',
+                'mobile_no': '{req.addInfo["mobile_no"].ToString().Trim()}',
+                'guid': '{req.addInfo["guid"].ToString()}',
+                 'otp_type':'2',
+                'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}},
+                'otp':{req.addInfo["email_otp"].ToString()}
+                }}";
+
+                        projectionJson = @"{
+                'email_id': 1,
+                'mobile_no': 1
+                }";
+
+                        filters = BsonDocument.Parse(filterJson);
+                        projection = BsonDocument.Parse(projectionJson);
+                        mRequest = new mongoRequest();
+                        mRequest.newRequestStatement(0, "(email_sms_svc)-(otp)", filters, projection, null, null);
+                        mResponse = _ds.executeStatements(mRequest, false).GetAwaiter().GetResult();
+                        result = mResponse._resStatements[0]._selectedResults;
+     if (result.Count > 0)
+            {
+                 resData.rData["rMessage"] = "Valid OTP";
+            }else{
+
+                 resData.rData["rMessage"] = "Invalid Email OTP";
+            } 
+                    }
+
+
+                }
+                catch (Exception exx)
+                {
+
+                }
+
+
             }
             else
             {

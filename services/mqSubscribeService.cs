@@ -46,6 +46,7 @@ public class mqSubscribeService
                     string formattedDate =DateTime.UtcNow.ToString();
                     filterJson = $@"{{
                     'mobile_no': '{recievedData["mobile_no"].ToString()}',
+                     'otp_type': '1', 
                     'guid': '{recievedData["guid"].ToString()}',
                     'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
                     }}";
@@ -56,6 +57,7 @@ public class mqSubscribeService
                     string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
                     filterJson = $@"{{
                     'email_id': '{recievedData["email_id"].ToString()}',
+                     'otp_type': '2',
                     'guid': '{recievedData["guid"].ToString()}',
                     'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
                     }}";
@@ -68,6 +70,7 @@ public class mqSubscribeService
                     string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
                     filterJson = $@"{{
                     'email_id': '{recievedData["email_id"].ToString()}',
+                    'otp_type': '1',
                     'mobile_no': '{recievedData["mobile_no"].ToString()}',
                     'guid': '{recievedData["guid"].ToString()}',
                     'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
@@ -75,7 +78,7 @@ public class mqSubscribeService
                 }
 
                 var projectionJson = @"{
-                'otp': 1
+                'otp': '1'
                 }";
 
                 BsonDocument filters = BsonDocument.Parse(filterJson);
@@ -138,6 +141,7 @@ public class mqSubscribeService
                 }
                 else if (recievedData["auth_fields"].ToString() == "email_and_mobile")
                 {
+                     _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
                     return true;
                     //_ss.SendSMS(mobile_no, msg);
                     //_ms.sendMail(email_id, "OTP from Source", msg);                  

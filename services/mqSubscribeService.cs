@@ -138,10 +138,9 @@ public class mqSubscribeService
                 }
                 else if (recievedData["auth_fields"].ToString() == "email_and_mobile")
                 {
-                    
-                   _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
-                  //  _ms.sendMail(email_id, "OTP from Source", msg); 
-                    return true;                 
+                    return true;
+                    //_ss.SendSMS(mobile_no, msg);
+                    //_ms.sendMail(email_id, "OTP from Source", msg);                  
                 }
                 return true;// send acknoledgement 
 

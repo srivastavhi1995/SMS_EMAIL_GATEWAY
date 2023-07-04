@@ -155,7 +155,7 @@ public class apiServiceVerifyOTP
             {
                  resData.rData["rMessage"] = "Valid OTP";
             }else{
-
+                    resData.rData["rCode"] = 102;
                  resData.rData["rMessage"] = "Invalid Email OTP";
             } 
                     }

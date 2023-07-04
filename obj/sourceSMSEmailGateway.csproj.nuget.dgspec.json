@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Anish_dotnet\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj": {}
+    "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj": {}
   },
   "projects": {
-    "D:\\Anish_dotnet\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj": {
+    "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Anish_dotnet\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj",
+        "projectUniqueName": "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj",
         "projectName": "sourceSMSEmailGateway",
-        "projectPath": "D:\\Anish_dotnet\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj",
-        "packagesPath": "C:\\Users\\anish\\.nuget\\packages\\",
-        "outputPath": "D:\\Anish_dotnet\\SMS_EMAIL_GATEWAY\\obj\\",
+        "projectPath": "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj",
+        "packagesPath": "/home/binod@sourceinfosys.in/.nuget/packages/",
+        "outputPath": "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\anish\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/binod@sourceinfosys.in/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -69,8 +69,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -82,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.119/RuntimeIdentifierGraph.json"
         }
       }
     }

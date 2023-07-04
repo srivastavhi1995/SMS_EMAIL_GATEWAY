@@ -66,8 +66,8 @@ public class mqSubscribeService
                 }
                 else if (recievedData["auth_fields"].ToString() == "email_and_mobile")
                 {
-                    DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                    string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                    // DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    string formattedDate = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
                     filterJson = $@"{{
                     'email_id': '{recievedData["email_id"].ToString()}',
                     'otp_type': '1',

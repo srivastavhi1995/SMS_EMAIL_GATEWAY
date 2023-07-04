@@ -136,11 +136,12 @@ public class mqSubscribeService
                     return true;
                     //_ms.sendMail(email_id, "OTP from Source",msg);                    
                 }
-                else if (recievedData["auth_fields"].ToString() == "mobile_and_email")
+                else if (recievedData["auth_fields"].ToString() == "email_and_mobile")
                 {
-                    return true;
-                    //_ss.SendSMS(mobile_no, msg);
-                    //_ms.sendMail(email_id, "OTP from Source", msg);                  
+                    
+                   _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
+                  //  _ms.sendMail(email_id, "OTP from Source", msg); 
+                    return true;                 
                 }
                 return true;// send acknoledgement 
 

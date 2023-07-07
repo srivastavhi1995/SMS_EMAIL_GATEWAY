@@ -159,6 +159,49 @@ public class mqSubscribeService
             }
         }
 
+        //For mobile update
+        _rs.subscribeQueue("send_medskey_change_mobile_q", false, onMsgRecvdUpdateOtpSend);
+
+        bool onMsgRecvdUpdateOtpSend(Dictionary<string, object> recievedData)
+        {
+            try
+            {
+                var otp = new Random().Next(100000, 999999);
+               BsonDocument filter=new BsonDocument{
+                {"_id",ObjectId.Parse(recievedData["_req_id"].ToString())}
+
+               };
+                BsonDocument updates = new BsonDocument
+            {
+                {"$set", new BsonDocument
+                    {
+                        {"_otp",otp},
+                        {"_status", 1},
+                         {"_valid_till",new BsonDateTime(DateTime.UtcNow.AddMinutes(10))}
+                    }
+                }
+            };
+               mongoResponse mResponse = new mongoResponse();
+                mongoRequest mRequest = new mongoRequest();
+                mRequest.newRequestStatement(3, "e_change_mobile_requests", filter, null, updates, null);
+                    mResponse =  _ds.executeStatements(mRequest, false).GetAwaiter().GetResult();
+                 var res=   mResponse._resStatements[0]._selectedResults;
+
+                var mobile_no = recievedData["_new_mobile_no"].ToString();
+                //var msg = "Six Digit OTP is " + otp;
+                var msg = otp.ToString() + " is your One Time Password (OTP) for AR SPARSH APP Registration for your Mobile Number Update "+ otp.ToString() +". - SOURCEDOTCOM PVT LTD";
+               
+                    _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
+                    return true;
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;// send negative ack to rabbit
+
+            }
+        }
+
        
 
     }

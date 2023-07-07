@@ -189,7 +189,7 @@ public class mqSubscribeService
 
                 var mobile_no = recievedData["_new_mobile_no"].ToString();
                 //var msg = "Six Digit OTP is " + otp;
-                var msg = otp.ToString() + " is your One Time Password (OTP) for AR SPARSH APP Registration for your Mobile Number Update "+ otp.ToString() +". - SOURCEDOTCOM PVT LTD";
+                var msg = otp.ToString() + " is your One Time Password (OTP) for AR SPARSH APP Registration for your Regimental Number "+ otp.ToString() +". - SOURCEDOTCOM PVT LTD";
                
                     _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
                     return true;

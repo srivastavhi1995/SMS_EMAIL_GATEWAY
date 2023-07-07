@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj": {}
+    "D:\\Anish_dotnet\\NewClone\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj": {}
   },
   "projects": {
-    "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj": {
+    "D:\\Anish_dotnet\\NewClone\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj",
+        "projectUniqueName": "D:\\Anish_dotnet\\NewClone\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj",
         "projectName": "sourceSMSEmailGateway",
-        "projectPath": "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/sourceSMSEmailGateway.csproj",
-        "packagesPath": "/home/binod@sourceinfosys.in/.nuget/packages/",
-        "outputPath": "/home/binod@sourceinfosys.in/SMS_EMAIL_GATEWAY/obj/",
+        "projectPath": "D:\\Anish_dotnet\\NewClone\\SMS_EMAIL_GATEWAY\\sourceSMSEmailGateway.csproj",
+        "packagesPath": "C:\\Users\\anish\\.nuget\\packages\\",
+        "outputPath": "D:\\Anish_dotnet\\NewClone\\SMS_EMAIL_GATEWAY\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/binod@sourceinfosys.in/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\anish\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -69,7 +69,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -81,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.119/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

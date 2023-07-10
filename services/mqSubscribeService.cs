@@ -128,7 +128,7 @@ public class mqSubscribeService
                 var mobile_no = recievedData["mobile_no"].ToString();
                 var email_id = recievedData["email_id"].ToString();
                 //var msg = "Six Digit OTP is " + otp;
-                var msg = otp.ToString() + " is your One Time Password (OTP) for AR SPARSH APP Registration for your Regimental Number "+ otp.ToString() +". - SOURCEDOTCOM PVT LTD";
+               var msg = otp.ToString() + "OTP for MedsKey Registration is "+otp.ToString()+ ".- SOURCEDOTCOM PVT LTD";
                 if (recievedData["auth_fields"].ToString() == "only_mobile")
                 {
                     _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
@@ -189,7 +189,7 @@ public class mqSubscribeService
 
                 var mobile_no = recievedData["_new_mobile_no"].ToString();
                 //var msg = "Six Digit OTP is " + otp;
-                var msg = otp.ToString() + " is your One Time Password (OTP) for AR SPARSH APP Registration for your Regimental Number "+ otp.ToString() +". - SOURCEDOTCOM PVT LTD";
+                var msg = otp.ToString() + "OTP for MedsKey Registration is "+otp.ToString()+ ".- SOURCEDOTCOM PVT LTD";
                
                     _ss_sdc.SendSMS(mobile_no, msg, otp.ToString()); 
                     return true;

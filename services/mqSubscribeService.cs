@@ -122,7 +122,7 @@ public class mqSubscribeService
                 {
                     //var found_docs = result.ToList();
                     //var found_docs = result;
-                    otp = Int32.Parse(result[0]["otp"].ToString());
+                    otp = otp;
                 }
 
                 var mobile_no = recievedData["mobile_no"].ToString();

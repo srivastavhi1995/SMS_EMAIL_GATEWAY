@@ -153,7 +153,7 @@ public class dbServiceMongo
                 IMongoCollection<BsonDocument> collection = _mongoDB.GetCollection<BsonDocument>(ms._collectionName);
                 if (ms._statementType == 0) // select 3
                 {
-                    mr._selectedResults = collection.Find(ms._filters).Project(ms._requiredFields).ToList();
+                    mr._selectedResults = collection.Find(ms._filters).ToList();
                 }
                 else if (ms._statementType == 1) // insert 0
                 {

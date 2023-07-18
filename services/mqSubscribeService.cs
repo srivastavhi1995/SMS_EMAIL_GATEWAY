@@ -203,7 +203,128 @@ public class mqSubscribeService
             }
         }
 
-       
+        
+        // POI_APPICATION GATWAY
+
+        _rs.subscribeQueue("reg_poi_sms", false, onMsgRecvdGenMobileOtpSend);
+        bool onMsgRecvdGenMobileOtpSend(Dictionary<string, object> recievedData)
+        {
+            try
+            {
+                var otp = new Random().Next(100000, 999999);
+                var filterJson = "";
+
+                if (recievedData["auth_fields"].ToString() == "only_mobile")
+                {
+                    // DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    // string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                    string formattedDate = DateTime.UtcNow.ToString();
+                    filterJson = $@"{{
+                    'mobile_no': '{recievedData["mobile_no"].ToString()}',
+                     'otp_type': '1', 
+                    'guid': '{recievedData["guid"].ToString()}',
+                    'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
+                    }}";
+                }
+                else if (recievedData["auth_fields"].ToString() == "only_email")
+                {
+                    DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    string formattedDate = dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                    filterJson = $@"{{
+                    'email_id': '{recievedData["email_id"].ToString()}',
+                     'otp_type': '2',
+                    'guid': '{recievedData["guid"].ToString()}',
+                    'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
+                    }}";
+
+
+                }
+                else if (recievedData["auth_fields"].ToString() == "email_and_mobile")
+                {
+                    // DateTime dateTime = DateTime.ParseExact(DateTime.UtcNow.ToString(), "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    string formattedDate = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+                    filterJson = $@"{{
+                    'email_id': '{recievedData["email_id"].ToString()}',
+                    'otp_type': '1',
+                    'mobile_no': '{recievedData["mobile_no"].ToString()}',
+                    'guid': '{recievedData["guid"].ToString()}',
+                    'valid_till': {{ '$gt':{{'$date':'{new BsonDateTime(DateTime.UtcNow)}'}}}}
+                    }}";
+                }
+
+                var projectionJson = @"{
+                'otp': '1'
+                }";
+
+                BsonDocument filters = BsonDocument.Parse(filterJson);
+                BsonDocument projection = BsonDocument.Parse(projectionJson);
+
+                mongoRequest mRequest = new mongoRequest();
+                mRequest.newRequestStatement(0, "(email_sms_svc)-(otp)", filters, projection, null, null);
+                mongoResponse mResponse = _ds.executeStatements(mRequest, false).GetAwaiter().GetResult();
+                var result = mResponse._resStatements[0]._selectedResults;
+
+                if (result.Count == 0) 
+                {
+                    
+                    var documents = new[]
+                    {
+                        new BsonDocument
+                        {
+                            {"email_id", recievedData["email_id"].ToString()},
+                            {"mobile_no", recievedData["mobile_no"].ToString()}, // this includes country code and mobile no
+                            {"country_code",recievedData["country_code"].ToString()},
+                            {"guid",recievedData["guid"].ToString()},
+                            {"app_id",recievedData["app_id"].ToString()},
+                            {"otp",otp},
+                            {"otp_type",recievedData["otp_type"].ToString()},
+                            {"valid_till",new BsonDateTime(DateTime.UtcNow.AddMinutes(10))}
+                        }
+                    };
+
+                    mRequest = new mongoRequest();
+                    mRequest.newRequestStatement(1, "(email_sms_svc)-(otp)", null, null, null, documents);
+                    _ds.executeStatements(mRequest, false);
+                }
+                else
+                {
+                    //var found_docs = result.ToList();
+                    //var found_docs = result;
+                    otp = Int32.Parse(result[0]["otp"].ToString());
+                }
+
+                var mobile_no = recievedData["mobile_no"].ToString();
+                var email_id = recievedData["email_id"].ToString();
+                //var msg = "Six Digit OTP is " + otp;
+                //   "OTP for MedsKey Registration is "+otp.ToString()+ ". - SOURCEDOTCOM PVT LTD";
+                var msg = " OTP for MedsKey Registration is " + otp.ToString() + ". - SOURCEDOTCOM PVT LTD";
+                if (recievedData["auth_fields"].ToString() == "only_mobile")
+                {
+                    _ss_sdc.SendSMS(mobile_no, msg, otp.ToString());
+                    return true;
+                }
+                else if (recievedData["auth_fields"].ToString() == "only_email")
+                {
+                    return true;
+                    //_ms.sendMail(email_id, "OTP from Source",msg);                    
+                }
+                else if (recievedData["auth_fields"].ToString() == "email_and_mobile")
+                {
+
+                    _ss_sdc.SendSMS(mobile_no, msg, otp.ToString());
+                    return true;                 
+                }
+                return true;// send acknoledgement 
+
+                // }
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;// send negative ack to rabbit
+
+            }
+        }
 
     }
 
